@@ -18,12 +18,13 @@
 #
 def triangle(a, b, c):
     # DELETE 'PASS' AND WRITE THIS CODE
-    if len(set({a,b,c})) == 1:
-        return "equilateral"
-    elif len(set({a,b,c})) == 2:
-        return 'isosceles'
-    elif len(set({a,b,c})) == 3:
-        return 'scalene'
+    if a < 1 or b < 1 or c < 1:
+        raise TriangleError("0?")
+
+    if not (a + b > c) or not (b + c > a) or not (a + c > b):
+        raise TriangleError("0?")
+
+    return ['equilateral', 'isosceles', 'scalene'][len(set([a, b, c]))-1]
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):
